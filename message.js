@@ -3,7 +3,8 @@ const message = () => {
   const city = "istanbul";
 
   const code = 34;
-  return console.log(city + " " + code);
+  // console.log(city + " " + code);
+  return;
 };
 export const person = {
   id: 143324,

@@ -1,11 +1,11 @@
-import message, { person } from "./message.js";
-const name = "ömer";
-const age = 20;
-console.log(name);
-console.log(person);
-message();
-export { name };
-export default age;
+// import message, { person } from "./message.js";
+// const name = "ömer";
+// const age = 20;
+// // console.log(name);
+// // console.log(person);
+// message();
+// export { name };
+// export default age;
 // bir kitabın bilgilerini içeren bir json objesini nasıl oluştururuz
 // let book = {
 //   kitap: {
