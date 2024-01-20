@@ -1,6 +1,7 @@
 // import age, { name } from "./person.js";
 // import { message } from "./message.js";
-// console.log("merhaba");
+// import { person } from './message';
+console.log("merhaba");
 // hata ayıklayıcı
 //  javascriptin yürütülmesini durdurur ve (varsa) hata ayıklama işlevini çağırır
 // let a = 10;
@@ -403,24 +404,248 @@ Object.defineProperty(obj, "subtract", {
 // const person5 = new Person("test", "example", 32, "green");
 // console.log(person5);
 
-function myNumbers() {
-  let n = 0;
-  return {
-    next: function () {
-      n += 10;
-      return { value: n };
-    },
-  };
-}
-const n = myNumbers();
-console.log(n);
-console.log(n.next());
-console.log(n.next());
-console.log(n.next());
-console.log(n.next());
+// function myNumbers() {
+//   let n = 0;
+//   return {
+//     next: function () {
+//       n += 10;
+//       return { value: n };
+//     },
+//   };
+// }
+// const n = myNumbers();
+// console.log(n);
+// console.log(n.next());
+// console.log(n.next());
+// console.log(n.next());
+// console.log(n.next());
 
-function greet(name, age) {
-  const age1 = age;
-  console.log(age1, name);
+// function greet(name, age) {
+//   const age1 = age;
+//   console.log(age1, name);
+// }
+// greet("test", 32);
+
+//! Objects Sets
+
+const number = [1, 2, 3, 3, 4, 3, 1, 7, 43, 7, 9, 8];
+
+number.push(10);
+console.log(number);
+// değerlerde bir set oluşturma
+const essizNumber = new Set(number);
+// değer ekleme silme
+essizNumber.delete(8);
+essizNumber.delete(2);
+essizNumber.add(99);
+console.log(essizNumber);
+let mySet = new Set(["elma", "portakal", "muz"]);
+mySet.delete("elma");
+console.log(mySet);
+// Bir değerin set içinde olup olmadığını kontrol edebiliriz.
+console.log(mySet.has("elma"));
+
+const letters = new Set(["a", "b", "c", "d", "f"]);
+console.log(letters);
+let text = "";
+letters.forEach((letter) => {
+  text += letter;
+});
+letters.forEach(function (value) {
+  text += value;
+});
+console.log(text);
+console.log(letters.size);
+const keysIterator = letters.keys();
+console.log(keysIterator);
+console.log(keysIterator.next());
+console.log(keysIterator.next());
+console.log(keysIterator.next());
+console.log(keysIterator.next());
+console.log(keysIterator.next());
+// done:Iteratörün tamamlandığını gösterir.
+
+const myIterator = letters.entries();
+console.log(myIterator);
+let text1 = "";
+for (const entry of myIterator) {
+  console.log(entry);
+  text1 += entry;
 }
-greet("test", 32);
+console.log(text1);
+console.log(typeof myIterator);
+console.log(letters instanceof Set);
+
+//! Objects Map
+// anahatar-değer çifleri üzeirnde işlem yapmak için kullanırız
+const myMap = new Map();
+console.log(myMap);
+myMap.set("name", "test");
+myMap.set("test", { key: "obj" });
+myMap.set("age", 23);
+// deperleri güncelleme
+myMap.set("name", "example");
+console.log(myMap);
+// değerlere erişim
+const name1 = myMap.get("name");
+console.log(name1);
+console.log(myMap.get("test"));
+console.log(myMap.has("name"));
+console.log(myMap.size);
+
+for (const [key, value] of myMap) {
+  console.log(key, value);
+}
+
+const restaurantMenu = new Map();
+// menüye öğeleri ekleme
+restaurantMenu.set("Kahvaltı Tabağı", 20);
+restaurantMenu.set("Pizza", 100);
+console.log(restaurantMenu);
+// menüde bir öğenin fiyatını kontrol etme
+console.log(`Kahvaltı Tabağı Fiyatı: ${restaurantMenu.get("Kahvaltı Tabağı")}`);
+// menüde bir öğeyi kontrol etme
+console.log(`Menüde çıtır tavuk var mı? ${restaurantMenu.has("Çıtır Tavuk")}`);
+console.log(restaurantMenu);
+// menüdeki öğeleri listeleme
+restaurantMenu.forEach((price, product) =>
+  console.log("değer", price, "anahtar", product)
+);
+console.log(`Menüde ${restaurantMenu.size} öğe bulunmaktadır`);
+restaurantMenu.delete("Pizza");
+console.log(`Menüde ${restaurantMenu.size} öğe bulunmaktadır.`);
+console.log(restaurantMenu);
+//! Fonksiyon Tanımlamalar
+// function example1(name) {
+//   console.log(name);
+// }
+// example1("Ömer");
+
+// var name2 = function (name) {
+//   console.log(name);
+// };
+// name2("uğur");
+
+// var name2 = (name) => {
+//   console.log(name);
+// };
+// name2("example");
+
+// var name2 = new Function("name", `console.log("Merhaba" +" " + name + "!")`);
+// name2("exampple");
+
+// function add(a, b) {
+//   return a + b;
+// }
+// let result = add(5, 10);
+// console.log(result);
+
+//! Fonksiyon Parametreleri
+// varsayılan parametreler
+function ismiGetir(name = "Example") {
+  console.log(name);
+}
+ismiGetir();
+ismiGetir("ömer");
+
+function myFunction(x, y = 10) {
+  return x + y;
+}
+const result = myFunction(5, 20);
+console.log(result);
+
+//! rest parametresi
+function sum(...numbers) {
+  console.log(numbers);
+  return numbers.reduce((total, num) => total + num, 0);
+}
+console.log(sum(1, 2, 3, 4, 100));
+
+function calculateTotal(...prices) {
+  // prices: rest parametresi ile geçilen ürün fiyatlarını içeren bir dizi oluşturduk
+  console.log(prices);
+  console.log(prices.reduce((toplam, ucret) => toplam + ucret, 0));
+  return prices.reduce((toplam, ucret) => toplam + ucret, 0);
+  // 0 : initial değer,toplama işlemine başlanılacak değer
+}
+//
+const telefon = 10000;
+const tablet = 20000;
+const pc = 55000;
+const totalDeger = calculateTotal(telefon, tablet, pc);
+console.log("Toplam Tutar", totalDeger);
+
+//! spread operatörü
+function personInfo(name, age, city) {
+  console.log("Name:", name);
+  console.log("Age:", age);
+  console.log("City", city);
+}
+const person2 = ["ali", 30, "istanbul"];
+// personInfo(person2[0], person2[1], person2[2]);
+console.log(...person2);
+personInfo(...person2);
+// personInfo("ali", 30, "istanbul");
+
+// const persons = {
+//   firstname: "Test",
+//   lastname: "example",
+//   fullName: function () {
+//     return this.firstname + " " + this.lastname;
+//   },
+// };
+// console.log(persons.fullName());
+//! call():Bir fonksiyonu belirli bir "this" değeri ve ayrı ayrı geçilen parametreleri çağırmak için kullanılır.
+const person3 = {
+  fullName: function (city, country) {
+    return (
+      this.firstname +
+      " " +
+      this.lastname +
+      " " +
+      this.age +
+      " " +
+      city +
+      " " +
+      country
+    );
+  },
+};
+
+const person10 = {
+  firstname: "ali",
+  lastname: "test",
+};
+const person4 = {
+  firstname: "veli",
+  lastname: "test",
+  age: 40,
+};
+const sonuc = person3.fullName();
+console.log(sonuc);
+const result1 = person3.fullName.call(person4, "oslo", "norway");
+console.log(result1);
+
+//! apply()
+function sum1(a, b, c) {
+  console.log(a, b, c);
+  return a + b;
+}
+
+const numbers = [5, 10, 40];
+const result3 = sum1.apply(null, numbers);
+console.log(result3);
+
+const person6 = {
+  name: "test",
+  greet: function () {
+    console.log("merhaba" + this.name);
+  },
+};
+const sonuc1 = person6.greet();
+console.log(sonuc1);
+const person9 = {
+  name: "Ali",
+};
+
+person6.greet.apply(person9);
